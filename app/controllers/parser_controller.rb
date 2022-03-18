@@ -18,19 +18,6 @@ class ParserController < ApplicationController
                 if schoolsInfo.include? key
                     puts "#{key} : #{value}"
                 end
-
-                # if key == key['lieu_denseignement_ens_libelle']
-                #     puts "Établissement : #{value}"   
-                # elsif 
-                #     key == key['ens_code_postal']
-                #     puts "Code postal : #{value}"   
-                # elsif 
-                #     key == key['ens_commune']
-                #     puts "Commune : #{value}"   
-                # elsif 
-                #     key == key['ens_region']
-                #     puts "Région : #{value}" 
-                # end
             end
         end
     end
