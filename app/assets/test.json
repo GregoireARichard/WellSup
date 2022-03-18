@@ -1,0 +1,19 @@
+{
+    "system": "Test",
+    "Continents": [
+       {
+           "Continent1": {
+               "name": "Europe",
+               "location": "North"
+            },
+           "Continent2": {
+               "name": "Australia",
+               "location": "South"
+            },
+           "Continent3": {
+               "name": "Asia",
+               "location": "North"
+            }
+        }  
+     ]
+   }
