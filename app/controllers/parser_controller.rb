@@ -8,17 +8,15 @@ class ParserController < ApplicationController
 
         json["results"].each do |school|
             puts "établissement --"
+            schoolsInfo = [
+                "lieu_denseignement_ens_libelle",
+                "ens_code_postal",
+                "ens_commune",
+                "ens_region"
+            ]
             school.each do |key, value|
-                schoolsInfo = [
-                    "lieu_denseignement_ens_libelle",
-                    "ens_code_postal",
-                    "ens_commune",
-                    "ens_region"
-                ]
-                for i in 0..schoolsInfo.length
-                    if key = key[schoolsInfo[i]]
-                        puts "#{key} : #{value}"
-                    end
+                if schoolsInfo.include? key
+                    puts "#{key} : #{value}"
                 end
 
                 # if key == key['lieu_denseignement_ens_libelle']
@@ -35,6 +33,5 @@ class ParserController < ApplicationController
                 # end
             end
         end
-
     end
 end
