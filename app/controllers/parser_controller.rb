@@ -1,18 +1,18 @@
 class ParserController < ApplicationController
     def index
         require 'json'
-        json_file = File.join(Rails.root, 'app', 'assets', 'test.json')
-
-        File.open(json_file, 'r') do |json_file|
-
-            json_file.each do |json_files|   
-                hash = JSON.parse(json_file)
-            end
-         end
-        #hash = JSON.parse(file)
+        require 'httparty'
+        response = HTTParty.get(base_url)
+        json = JSON.parse(response.body)
+        count = 0
         
-        hash['nom'].each do |nom|
-            puts nom
+        json["results"].each do |school|
+            school.each do |key, value|
+                if key == key['lieu_denseignement_ens_libelle']
+                    puts "#{value}"
+                end
+            end
         end
+
     end
 end
