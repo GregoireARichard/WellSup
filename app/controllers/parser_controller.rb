@@ -12,7 +12,7 @@ class ParserController < ApplicationController
             else 
                 school["ens_hebergement"] = true
             end
-            if school["ens_accessibilite"] == " "
+            if school["ens_accessibilite"] == ""
                 school["ens_accessibilite"] = false
             else 
                 school["ens_accessibilite"] = true
