@@ -19,7 +19,6 @@ class RequestController < ApplicationController
         #     "theme2"=>"animaux", 
         #     "theme3"=>"agroalimentaire"
         # }
-
         frontReq.each do |key, value|
             frontReq[key] = true if (frontReq[key] == "true")
             frontReq[key] = false if (frontReq[key] == "false")
@@ -65,5 +64,7 @@ class RequestController < ApplicationController
         end
 
         puts ActiveRecord::Base.connection.execute(request)
+        parameters = ["ex", "djd", "djdpd"]
+        request = HTTParty.post("http://localhost:3000/axiosTests/?ex=#{parameters[0]}&exe=#{parameters[1]}&exee=#{parameters[2]}")
     end
 end
