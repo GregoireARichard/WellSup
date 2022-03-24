@@ -64,6 +64,7 @@ class RequestController < ApplicationController
         end
         request += " LIMIT 3"
 
+
         # Send the SQL Query
         sqlQuery = (ActiveRecord::Base.connection.execute(request))
 
@@ -92,8 +93,6 @@ class RequestController < ApplicationController
         end
         urlToSend.delete_suffix!('&')
 
-        #puts urlToSend
-        #request = HTTParty.post("http://localhost:3000/axiosTests/?ex=#{parameters[0]}&exe=#{parameters[1]}&exee=#{parameters[2]}")
         redirect_to urlToSend
     end
 end
