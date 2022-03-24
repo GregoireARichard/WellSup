@@ -10,6 +10,7 @@ WORKDIR /wellsup
 # Copy all the application's files into the /code
 # directory.
 COPY . /wellsup/
+COPY ./Gemfile.prod /wellsup/Gemfile
 
 # Run bundle install to install the Ruby dependencies.
 RUN bundle install
