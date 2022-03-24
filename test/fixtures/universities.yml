@@ -1,0 +1,51 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  action_de_formation_af_identifiant_onisep: MyString
+  formation_for_libelle: MyString
+  for_url_et_id_onisep: MyString
+  for_indexation_domaine_web_onisep: MyString
+  for_type: MyString
+  for_nature_du_certificat: MyString
+  for_niveau_de_sortie: MyString
+  lieu_denseignement_ens_libelle: MyString
+  ens_commune: MyString
+  ens_statut: MyString
+  ens_adresse: MyString
+  ens_code_postal: 1
+  ens_departement: MyString
+  ens_academie: MyString
+  ens_region: MyString
+  ens_n_telephone: MyString
+  ens_site_web: MyString
+  ens_hebergement: false
+  ens_accessibilite: false
+  af_modalites_scolarite: MyString
+  af_elements_denseignement: MyString
+  af_cout_scolarite: MyString
+  af_cout_dinscription: MyString
+
+two:
+  action_de_formation_af_identifiant_onisep: MyString
+  formation_for_libelle: MyString
+  for_url_et_id_onisep: MyString
+  for_indexation_domaine_web_onisep: MyString
+  for_type: MyString
+  for_nature_du_certificat: MyString
+  for_niveau_de_sortie: MyString
+  lieu_denseignement_ens_libelle: MyString
+  ens_commune: MyString
+  ens_statut: MyString
+  ens_adresse: MyString
+  ens_code_postal: 1
+  ens_departement: MyString
+  ens_academie: MyString
+  ens_region: MyString
+  ens_n_telephone: MyString
+  ens_site_web: MyString
+  ens_hebergement: false
+  ens_accessibilite: false
+  af_modalites_scolarite: MyString
+  af_elements_denseignement: MyString
+  af_cout_scolarite: MyString
+  af_cout_dinscription: MyString
