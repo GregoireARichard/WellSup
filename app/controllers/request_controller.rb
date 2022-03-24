@@ -5,7 +5,7 @@ class RequestController < ApplicationController
             puts key + ' : ' + value 
         end
 
-        # Mise en place des variables pour la query SQL
+        # Setting up the variables for the SQL query
 
         # frontReq = {
         #     "yoStudy"=>"false", 
@@ -39,15 +39,15 @@ class RequestController < ApplicationController
             ens_statut = "<> 'public'"
         end
 
-        request = "SELECT id FROM universities"
-        # Partie globale
+        request = "SELECT lieu_denseignement_ens_libelle, formation_for_libelle, for_niveau_de_sortie, for_indexation_domaine_web_onisep, ens_site_web, ens_n_telephone FROM universities"
+        # Global part
         request += " WHERE for_niveau_de_sortie #{for_niveau_de_sortie} 'Bac + 3'" #Niveau de sortie
         request += " AND af_modalites_scolarite LIKE '%apprentissage%'" if (frontReq['alternship'])
         request += " AND ens_statut #{ens_statut}"
         request += " AND for_nature_du_certificat NOT IN ('non certifiant','Certificat d''école')" if frontReq['stateRecognized']
         request += " AND ens_region = 'Ile-de-France'" if frontReq['idf']
         request += " AND ens_commune IN #{bigTowns}" if frontReq['bigTown']
-        # Thèmes choisis
+        # Chosen themes
         request += " AND ("
         i = 1
         loop do
@@ -62,10 +62,37 @@ class RequestController < ApplicationController
             end
             i += 1
         end
+        request += " LIMIT 3"
 
-        #puts ActiveRecord::Base.connection.execute(request)
-        puts request
-        parameters = ["ex", "djd", "djdpd"]
-        request = HTTParty.post("http://localhost:3000/axiosTests/?ex=#{parameters[0]}&exe=#{parameters[1]}&exee=#{parameters[2]}")
+
+        # Send the SQL Query
+        sqlQuery = (ActiveRecord::Base.connection.execute(request))
+
+        # Send the link to the front-end, with the selected schools
+        urlToSend = "http://localhost:3000/results/?q=ok&"
+
+        replacements = {
+            '/' => ',',
+            '| ' => ',',
+            ' - ' => ',',
+            ', ' => ',',
+            ' (généralités)' => ''
+        }
+
+        i = 1
+        sqlQuery.each do |ecole|
+            urlToSend += "ecole#{i}=#{ecole['lieu_denseignement_ens_libelle']}&"
+            urlToSend += "formation#{i}=#{ecole['formation_for_libelle']}&"
+            urlToSend += "duree#{i}=#{ecole['for_niveau_de_sortie']}&"
+            categories = ecole['for_indexation_domaine_web_onisep'].gsub(Regexp.union(replacements.keys), replacements)
+            categories = categories.split(",").uniq
+            urlToSend += "description#{i}=#{categories.join(',')}&"
+            urlToSend += "site#{i}=#{ecole['ens_site_web']}&"
+            urlToSend += "tel#{i}=#{ecole['ens_n_telephone']}&"
+            i += 1
+        end
+        urlToSend.delete_suffix!('&')
+        puts urlToSend
+
     end
 end
