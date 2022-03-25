@@ -68,7 +68,7 @@ class RequestController < ApplicationController
         sqlQuery = (ActiveRecord::Base.connection.execute(request))
 
         # Send the link to the front-end, with the selected schools
-        urlToSend = "http://localhost:3000/results/?q=ok&"
+        urlToSend = "http://localhost:3000/results/?"
 
         replacements = {
             '/' => ',',
